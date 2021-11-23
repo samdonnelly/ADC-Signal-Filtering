@@ -1,7 +1,7 @@
 # ADC Signal Filtering
 
-This program filters a sample of ADC data to eliminate noise and get more accurate results and write those results to a file for plotting. 
+The program adc_signal_filtering.c uses a butterworth filter on supplied ADC data to help eliminate noise and therefore get more accurate readings. It's intended for use with sensors or other devices that are subject to lots of external noice. The file can be directly inserted into the source code of projetcs and called to filter data. 
 
-This code is intnded for implementation on microcontrollers that do ADC conversions on analog siganls from external sensors. More specifically it is made for the bike-data-aquisition-stm32f4 and brma-stm32f2 projects that can be found in my repos. The code was created and tested here before being implemented and tested on hardware. 
+For the purposes of testing the results of the filter, filtered and non filtered data are recorded and a separate python script is used to plot the results. main.c is used to carry out the process of calling the filter as you would when using the filter in an actual project. 
 
-THis repo also contains a python script used for plotting the before and after results of the filtering scheme. 
+This code was originally intended for my bike-data-aquisition-stm32f4 and brma-stm32f2 projects. 

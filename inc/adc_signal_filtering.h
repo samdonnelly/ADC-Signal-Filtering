@@ -11,6 +11,7 @@
  * Header Files 
  * ------------------------------------------------------------------------------------------------
  */
+#include <stdint.h>
 
 
 /*
@@ -28,6 +29,22 @@
  * ------------------------------------------------------------------------------------------------
  */
 
+// Needed to use M_PI
+#define _USE_MATH_DEFINES
+
+// For butterworth filter function calls 
+#define SETUP  0
+#define NULL_1 0
+#define NULL_2 0.0
+#define FILTER 1
+
+
+/*
+ * -----------------------------------------------------------------------------------------
+ * Variables and Structures
+ * -----------------------------------------------------------------------------------------
+ */
+typedef struct sensor_list sensor_list;
 
 
 /*
@@ -36,11 +53,15 @@
  * ------------------------------------------------------------------------------------------------
  */
 
-// Take specified cutoff frquency (depends on application) and generate equations 
-void set_frequency_cutoff(void);
+double butterworth_filter(uint8_t function, uint8_t sensor, double sensor_raw);
 
-// Apply equation to supplied data 
-void signal_filtering(void);
+void butterworth_filter_ic(sensor_list *sensor_setup);
+
+void butterworth_filter_setup(sensor_list *cst);
+
+void butterworth_filter_constants(sensor_list *constants, double c1, double c2);
+
+void butterworth_filter_equation(sensor_list *eqn);
 
 
 /*
