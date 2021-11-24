@@ -4,6 +4,22 @@
  *
  * Date created: November 16, 2021
  * Author: Sam Donnelly 
+ * 
+ * Notes on this file and how to use it:
+ *  - Go through each of the functions below and define information for each device using the 
+ *    filter. There are comments saying where and how to define this information. 
+ * 
+ *  - In the 'butterworth_filter_setup()' function make sure to define the cutoff frequency (fc)
+ *    and sampleing frequency (fs) correctly for each device. The cutoff frequency defines the 
+ *    maximum frequency that will be let through the filter. The sample frequency is dependent 
+ *    on how fast you run your code. It is recommended you throttle the code to a set sample 
+ *    frequency or test the defined sample frequency until you get the correct results.
+ * 
+ *  - Make sure to call 'butterworth_filter(SETUP,...);' at the beginning of your code to 
+ *    initialize all the filter equation constants so calculations are correct. After this 
+ *    call 'butterworth_filter(FILTER,...);' each time you want to filter a device reading. 
+ * 
+ *  - The filtered signal values will have a slight phase delay from the raw signal values. 
  */
 
 /*
@@ -26,6 +42,7 @@
  * Variables and Structures
  * -----------------------------------------------------------------------------------------
  */
+
 typedef struct filter_eqn_const {
     // Filtered signal coefficients
     double a1;
@@ -61,7 +78,7 @@ typedef struct sensor_list {
  * -----------------------------------------------------------------------------------------
  */ 
 
-//
+// Main filter function
 double butterworth_filter(uint8_t function, uint8_t sensor_select, double sensor_raw) {
     // Define each sensor here 
     static sensor_list sensor;   // sensor_select == 0 
@@ -73,12 +90,8 @@ double butterworth_filter(uint8_t function, uint8_t sensor_select, double sensor
             return 0;
         case 1:
             // Implement filter 
-
-            // y -> Filtered signal
-            // x -> raw signal
-
-            // Add a condition for each device used
             switch (sensor_select) {
+                // Add a case for each device used
                 case 0:
                     // Calculate filtered value
                     sensor.sensor_vals.xn = sensor_raw;
@@ -101,11 +114,11 @@ void butterworth_filter_setup(sensor_list *sensor_setup) {
 
     // Define the cutoff frequencies (Hz)
     // Add an appropriate fc_sensor for each device used. 
-    const uint16_t fc_sensor = 20;
+    const uint16_t fc_sensor = 5;
 
     // Define the programs sampling frequency (Hz)
     // (this depends on how fast you run your program loop)
-    const uint16_t fs_sensor = 5000;
+    const uint16_t fs_sensor = 1000;
 
     // Constant 1 
     const double C1 = sqrt(2.0);

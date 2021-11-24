@@ -23,14 +23,6 @@
 
 /*
  * ------------------------------------------------------------------------------------------------
- * Variables 
- * ------------------------------------------------------------------------------------------------
- */
-
-
-
-/*
- * ------------------------------------------------------------------------------------------------
  * Main 
  * ------------------------------------------------------------------------------------------------
  */
@@ -43,8 +35,8 @@ void main(void) {
     double sensor_val_raw;
 
     // Sample information 
-    uint16_t num_samples = 5000;
-    double time_step = 0.01;
+    uint16_t num_samples = 2000;
+    double time_step = 0.0005;
 
     // Text file names 
     char *filename_raw_vals = "../text-file-data/raw_values.txt";
@@ -66,7 +58,7 @@ void main(void) {
             fprintf(raw_vals, "%f\n", sensor_val_raw);
 
             // Call for each sensor defined in adc_signal_filtering.c 
-            // Filter the 50Hz signal from the define raw value equation 
+            // Filter the 50Hz signal from the defined raw value equation 
             sensor_val_filtered = butterworth_filter(FILTER, 0, sensor_val_raw);
             fprintf(filtered_vals, "%f\n", sensor_val_filtered);
         }

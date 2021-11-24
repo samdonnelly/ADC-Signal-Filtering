@@ -11,6 +11,7 @@
  * Header Files 
  * ------------------------------------------------------------------------------------------------
  */
+
 #include <stdint.h>
 
 
@@ -19,6 +20,7 @@
  * Include Guards 
  * ------------------------------------------------------------------------------------------------
  */
+
 #ifndef ADC_SIGNAL_FILTERING
 #define ADC_SIGNAL_FILTERING
 
@@ -44,6 +46,7 @@
  * Variables and Structures
  * -----------------------------------------------------------------------------------------
  */
+
 typedef struct sensor_list sensor_list;
 
 
@@ -69,5 +72,6 @@ void butterworth_filter_equation(sensor_list *eqn);
  * End Include Guard 
  * ------------------------------------------------------------------------------------------------
  */
+
 #endif  // ADC_SIGNAL_FILTERING
 
